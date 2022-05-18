@@ -127,6 +127,7 @@ namespace EasyFarm.States
         public override void Run(IGameContext context)
         {
             if (context.API.Player.Status.Equals(Status.Fighting)) return;
+            context.API.Follow.Reset();
             var trusts = context.Config.BattleLists["Trusts"].Actions.Where(t => t.IsEnabled);
             foreach (var trust in trusts)
                 if (TrustNeedsSummoning(context, trust) && AbilityUtils.IsRecastable(context.API, trust))

@@ -35,11 +35,7 @@ namespace EasyFarm.States
             if (new RestState().Check(context)) return false;
 
             // Make sure we don't need trusts
-            if (new SummonTrustsState().Check(context))
-            {
-                context.API.Follow.Reset();
-                return false;
-            }
+            if (new SummonTrustsState().Check(context)) return false;
 
 
             // Target dead or null.
