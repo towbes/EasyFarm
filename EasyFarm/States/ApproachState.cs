@@ -35,10 +35,16 @@ namespace EasyFarm.States
             if (new RestState().Check(context)) return false;
 
             // Make sure we don't need trusts
-            if (new SummonTrustsState().Check(context)) return false;
+            if (new SummonTrustsState().Check(context))
+            {
+                context.API.Follow.Reset();
+                return false;
+            }
+
 
             // Target dead or null.
             if (!context.Target.IsValid) return false;
+
 
             // We should approach mobs that have aggroed or have been pulled. 
             if (context.Target.Status.Equals(Status.Fighting)) return true;
